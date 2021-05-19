@@ -1,0 +1,42 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+  }
+  .people{
+    text-align: right;
+  }
+  .card-panel {
+    width: 100%;
+    background: #343a40;
+    padding: 5vh;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .col-sm {
+    margin: 20px;
+    padding: 4px;
+    border: 20px;
+  }
+  
+  .card-body {
+    margin: 3px;
+  }
+  .card-body .inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .form-control {
+    border: 0.7px solid black;
+  }
+  

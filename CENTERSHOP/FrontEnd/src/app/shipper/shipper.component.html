@@ -1,0 +1,27 @@
+<div class="main">
+  <div class="sidebar">
+    <app-side-bar (codeEvent)="shipmentEventHandler($event)"></app-side-bar>
+  </div>
+  <div class="container-fluid">
+    <div class="card" *ngFor="let ship of shipment">
+      <h2 class="card-header">#SPEDIZIONE</h2>
+      <div class="text">
+        <div class="card-body">
+          <h5>Orario spedizione:</h5>
+          <p>{{ship.orario}}</p>
+          <h5>Ritirare la merce qui:</h5>
+          <p>{{ship.negozi[0].nomeNegozio}} in via: {{ship.negozi[0].viaNegozio}}</p>
+          <h5>Consegnare la merce qui:</h5>
+          <p>{{ship.viaPuntoRitiro}}</p>
+          <h5>Codice pacco:</h5>
+          <p>{{ship.codiceRitiro}}</p>
+        </div>
+        <div class="name">
+          <h3>Nome cliente:</h3>
+          <p>{{ship.nominativoCliente}}</p>
+        </div>
+      </div>
+      <button type="button" class="btn btn-success" (click)="endConsegna(ship)" >Spedizione completata</button>
+    </div>
+  </div>
+</div>

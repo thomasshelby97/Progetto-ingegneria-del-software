@@ -1,0 +1,38 @@
+<div class="main">
+  <div class="sidebar">
+    <app-side-bar (codeEvent1)="prodottiEventHandler($event)"></app-side-bar>
+  </div>
+  <div class="card-panel">
+    <div class="row card-deck">
+      <div class="col-lg-4 col-md-6 mb-4" *ngFor="let prodotto of prodotti">
+        <div class="card text-center">
+          <div class="card-header">
+            <h4>{{ prodotto.descrizione }}</h4>
+          </div>
+          <div class="card-body">
+            <a href="#"
+              ><img class="card-img-top" alt="" src="{{ prodotto.img }}"
+            /></a>
+            <h5 class="card-title">{{ prodotto.prezzo }} €</h5>
+
+            <h5 class="card-title">disponibilita: {{ prodotto.disponibilita }} </h5>
+            <h6 *ngIf = "prodotto.percsconto!=0">sconto del {{ prodotto.percsconto }} %</h6>
+            <div class="inputs">
+              <div >
+                <input type="number" [(ngModel)]="number"  min="0" class="form-control" placeholder="0" />
+              </div>
+              <div >
+                <button class="btn btn-primary" (click)="sendToCart(prodotto,number)">Add To Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart">
+  <app-cart [carrello] = "carrello">
+
+  </app-cart>
+</div>
+</div>

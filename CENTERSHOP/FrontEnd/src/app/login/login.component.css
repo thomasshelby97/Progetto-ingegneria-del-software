@@ -1,0 +1,22 @@
+
+.main-content{
+    /* padding-left: 35vw; */
+    justify-content: center;
+    width: 100vw;
+}
+
+.row{
+   margin: auto;
+   padding-top: 100px;
+}
+
+.title{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: baseline;
+}
+
+.card-body{
+   border: solid violet;
+}

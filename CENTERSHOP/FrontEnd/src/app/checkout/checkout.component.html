@@ -1,0 +1,74 @@
+<div class="container d-flex justify-content-center mt-5 mb-5">
+    <div class="row g-3">
+        <div class="col-md-6"> <span>Payment Method</span>
+            <div class="card">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header p-0" id="headingTwo">
+                            <h2 class="mb-0"> <button class="btn btn-light btn-block text-left collapsed p-3 rounded-0 border-bottom-custom" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <div class="d-flex align-items-center justify-content-between"> <span>Chose spedition</span> <i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                                </button> </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body"> <input type="text"  [(ngModel)]="via" class="form-control" placeholder="Via" (change)="onBoxChange($event.target.value)"> </div>
+                            <h5 style="text-align: center;">or</h5>
+                            <div class="input">
+                            <div class="card-body"> <input type="radio" [(ngModel)]="realm" value="Via Napoleone 2" name="locker" id="locker1" (change)="onRadioChange($event.target.value)"> <label for="locker1">Via Napoleone 2</label></div>
+                            <div class="card-body"> <input type="radio" [(ngModel)]="realm" value="Via Garibaldi 4" name="locker" id="locker2" (change)="onRadioChange($event.target.value)"> <label for="locker2">Via Garibaldi 4</label></div>
+                            <div class="card-body"> <input type="radio" [(ngModel)]="realm" value="Via Montesi 38" name="locker" id="locker3" (change)="onRadioChange($event.target.value)"> <label for="locker3">Via Montesi 38</label></div>
+                            <div class="card-body"> <input type="radio" [(ngModel)]="realm" value="Via Camilli 38" name="locker" id="locker4" (change)="onRadioChange($event.target.value)"> <label for="locker4">Via Camilli 38</label></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <h2 class="mb-0"> <button class="btn btn-light btn-block text-left p-3 rounded-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="d-flex align-items-center justify-content-between"> <span>Credit card</span>
+                                        <div class="icons"> <img src="https://i.imgur.com/2ISgYja.png" width="30"> <img src="https://i.imgur.com/W1vtnOV.png" width="30"> <img src="https://i.imgur.com/35tC99g.png" width="30"> <img src="https://i.imgur.com/2ISgYja.png" width="30"> </div>
+                                    </div>
+                                </button> </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body"><span  class="font-weight-normal card-text">Name</span><input type="text"  [(ngModel)]="nome" (change)="onNomeChange($event.target.value)" class="form-control" ></div>
+                            <div class="card-body"><span  class="font-weight-normal card-text">Surname</span><input type="text" [(ngModel)]="cognome" (change)="onCognomeChange($event.target.value)" class="form-control" ></div>
+                            <div class="card-body"><span  class="font-weight-normal card-text">Email</span><input type="text"[(ngModel)]="email" (change)="onEmailChange($event.target.value)" class="form-control" ></div>
+                            <div class="card-body"> <span class="font-weight-normal card-text">Phone Number</span> <input type="tel" [(ngModel)]="numero" (change)="onNumberChange($event.target.value)" class="form-control" placeholder="+39" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"> </div>
+                            <div class="card-body payment-card-body"> <span class="font-weight-normal card-text">Card Number</span>
+                                <div class="input"> <i class="fa fa-credit-card"></i> <input type="text" [(ngModel)]="cardNumber" (change)="onCardNumberChange($event.target.value)" class="form-control" placeholder="0000 0000 0000 0000"> </div>
+                                <div class="row mt-3 mb-3">
+                                    <div class="col-md-6"> <span class="font-weight-normal card-text">Expiry Date</span>
+                                        <div class="input"> <i class="fa fa-calendar"></i> <input type="text" [(ngModel)]="expiryDate" (change)="onExDataChange($event.target.value)" class="form-control" placeholder="MM/YY"> </div>
+                                    </div>
+                                    <div class="col-md-6"> <span class="font-weight-normal card-text">CVC/CVV</span>
+                                        <div class="input"> <i class="fa fa-lock"></i> <input type="text" [(ngModel)]="CVC" (change)="onCVCChange($event.target.value)" class="form-control" placeholder="000"> </div>
+                                    </div>
+                                </div> <span class="text-muted certificate-text"><i class="fa fa-lock"></i> Your transaction is secured with ssl certificate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6"> <span>Summary</span>
+            <div class="card">
+                <div class="d-flex justify-content-between p-3">
+                    <div class="d-flex flex-column"> <h5 class="card-title">Total: {{getTotal()}} €</h5>  </div>
+                   
+                </div>
+                <hr class="mt-0 line">
+                <div class="p-3">
+                    <div class="d-flex justify-content-between mb-2"> <span>List</span>  </div>
+                    <ul>
+                        <li *ngFor="let item of carrelloFinale"><span>{{item.descrizione}}  <p>{{item.quantita}}</p> x <p> prezzo: {{item.prezzo}}</p></span></li>
+                    </ul>
+                </div>
+                <hr class="mt-0 line">
+                <div class="p-3 d-flex justify-content-between">
+                    <div class="d-flex flex-column"> <h5 class="card-title">Total:  {{getTotal()}}  </h5>  </div> <span>€</span>
+                </div>
+                <div class="p-3"> <button class="btn btn-primary btn-block free-button" (click)="checkPayment()">Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-dark ">
+  <a class="navbar-brand" href="#" (click)= "goCenter()">CenterShop</a>
+  <div class="collapse navbar-collapse" *ngIf="isLogin()">
+    <form class="form-inline my-2 my-lg-0">
+      <div class="input-group">
+        <!-- <input
+          type="search"
+          class="form-control rounded"
+          placeholder="Search"
+          aria-label="Search"
+          aria-describedby="search-addon"
+          [(ngModel)]="search" (change)="onSearchChange($event.target.value)" [ngModelOptions]="{standalone: true}"
+        /> -->
+        <!-- <button type="button" class="btn btn-outline-primary" (click)="sendNegozio()">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button> -->
+      </div>
+    </form>
+    <div class="logs" *ngIf="isLogin()">
+      <div class="welcome" *ngIf="isLogged()">
+        <p class="font-weight-bold">Welcome {{logged}}</p>
+      </div>
+      <a href=" " *ngIf="isLogged()" (click)="logout()">
+        <i class="fa fa-sign-in" aria-hidden="true"></i>Logout
+      </a>
+      <a href="/login" *ngIf="!isLogged()">
+        <i class="fa fa-sign-in" aria-hidden="true"></i>Login
+      </a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,37 @@
+.main{
+    display:flex;
+    flex-direction: row;
+    width: auto;
+}
+
+.container-fluid{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.card{
+    width: 70vw;
+    height: 70vh;
+    border: solid black;
+    bottom: 80px;
+}
+
+.text{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+    align-items: center;
+    height: 100%;
+}
+.card-body{
+    height: 90%;
+}
+.name{
+    height: 90%;
+    flex-grow: 1;
+}

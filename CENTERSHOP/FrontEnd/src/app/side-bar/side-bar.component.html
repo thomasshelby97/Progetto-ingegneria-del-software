@@ -1,0 +1,194 @@
+
+<div class="wrapper" *ngIf="isHome()">
+  <!-- Sidebar -->
+  <nav id="sidebar">
+    <div class="filter-container">
+    <ul class="list-unstyled components">
+      <li class="container-sm " *ngFor="let item of menuItems">
+        <button  (click)="sendCategory(item)">
+          <p>{{ item }}</p>
+        </button>
+      </li>
+      <li class="container-sm " >
+        <button  (click)="showCatalogo()">
+          <p>Mostra Catalogo</p>
+        </button>
+      </li>
+      <li class="container-sm ">
+        <button (click)="showCatalogoScontato()">
+          <p>Mostra Catalogo Scontato</p>
+        </button>
+      </li>
+    </ul>
+  </div>
+  </nav>
+</div>
+
+<div class="wrapper" *ngIf="isShipper()">
+  <!-- Sidebar -->
+  <nav id="sidebar" >
+    <div class="ship-container ">
+    <ul >
+      <li *ngFor="let ship of shipment;">
+        <button (click)="sendCode(ship)"> <p>{{ship.orario}}</p></button>
+        
+      </li>
+    </ul>
+  </div>
+  </nav>
+</div>
+
+<div class="wrapper" *ngIf="isMerchant()">
+  <!-- Sidebar Merchant-->
+  <nav id="sidebar">
+    <div class="function-container">
+      <ul>
+        <li class="container-sm">
+          <button data-toggle="modal" data-target="#aggiungiProdotto"><p>AGGIUNGI PRODOTTO</p></button>
+          <hr class="rounded" />
+        </li>
+        <li class="container-sm">
+          <button data-toggle="modal" data-target="#modificaDisponibilita"><p>MODIFICA DISPONIBILITA'</p></button>
+          <hr class="rounded" />
+        </li>
+        <li class="container-sm">
+          <button data-toggle="modal" data-target="#cancellaProdotto"><p>CANCELLA PRODOTTO</p></button>
+          <hr class="rounded" />
+        </li>
+        <li class="container-sm">
+          <button data-toggle="modal" data-target="#modificaProm"><p>MODIFICA PROMOZIONE</p></button>
+          <hr class="rounded" />
+        </li>
+        <li class="container-sm">
+          <button (click)="mostraProdotti()"><p>MOSTRA CATALOGO</p></button>
+          <hr class="rounded" />
+        </li>
+        <li class="container-sm">
+          <button (click)="mostraScontati()"><p>MOSTRA CATALOGO SCONTATO</p></button>
+          <hr class="rounded" />
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<!-- AGGIUNGI PRODOTTO -->
+<div class="modal fade" id="aggiungiProdotto" tabindex="-1" role="dialog" aria-labelledby="aggiungiProdotto" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="aggiungiProdotto">Aggiungi prodotto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="nomeProdotto">Nome prodotto</label>
+          <input type="text" class="form-control" [(ngModel)]="nome" (change)="addNome($event.target.value)" id="nomeProdotto"  placeholder="Nome prodotto" >
+        </div>
+        <div class="form-group">
+          <label for="categoria">Categoria</label>
+          <input type="text" class="form-control" [(ngModel)]="categoria" (change)="addCategoria($event.target.value)" id="categoria" placeholder="categoria" >
+        </div>
+        <div class="form-group">
+          <label for="prezzoProdotto">Prezzo</label>
+          <input type="number" class="form-control" [(ngModel)]="prezzo" (change)="addPrezzo($event.target.value)" id="prezzoProdotto"  placeholder="Prezzo" >
+        </div>
+        <div class="form-group">
+          <label for="disponibilitàProdotto">Disponibilità</label>
+          <input type="text" class="form-control" [(ngModel)]="disponibilita" (change)="addDisponibilita($event.target.value)" id="disponibilitàProdotto2"  placeholder="Disponibilità" >
+        </div>
+        <div class="form-group">
+          <label for="promozioneProdotto">Percentuale Sconto</label>
+          <input type="text" class="form-control" [(ngModel)]="promozione" (change)="addPromozione($event.target.value)" id="disponibilitàProdotto"  placeholder="Disponibilità" >
+        </div>
+        <div class="form-group">
+          <label for="immagineProdotto">Immagine</label>
+          <input type="text" class="form-control" [(ngModel)]="immagine" (change)="addImmagine($event.target.value)" id="immagineProdotto"  placeholder="Link immagine" >
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="aggiungiProdotto()">Aggiungi prodotto</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODIFICA DISPONIBILITA -->
+<div class="modal fade" id="modificaDisponibilita" tabindex="-1" role="dialog" aria-labelledby="modificaDisponibilita" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modificaDisponibilita">Modifica disponibilità</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="idProdotto">Id prodotto</label>
+          <input type="text" class="form-control" [(ngModel)]="id" (change)="addId($event.target.value)" id="idProdotto" placeholder="Id">
+        </div>
+        <div class="form-group">
+          <label for="disponibilitàProdotto">Disponibilità</label>
+          <input type="text" class="form-control" [(ngModel)]="disponibilita" (change)="addDisponibilita($event.target.value)" id="disponibilitàProdotto1"  placeholder="Disponibilità">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="modificaDisp()">Modifica disponibilità</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODIFICA PROMOZIONE -->
+<div class="modal fade" id="modificaProm" tabindex="-1" role="dialog" aria-labelledby="modificaProm" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modificaProm">Modifica promozione</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="idProdotto2">Id prodotto</label>
+          <input type="text" class="form-control" [(ngModel)]="id" (change)="addId($event.target.value)" id="idProdotto2" placeholder="Id">
+        </div>
+        <div class="form-group">
+          <label for="promozioneProdotto">Promozione</label>
+          <input type="text" class="form-control" [(ngModel)]="promozione" (change)="addPromozione($event.target.value)" id="promozione"  placeholder="Percentuale Sconto">
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="modificaPromozione()">Modifica promozione</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- CANCELLA PRODOTTO -->
+<div class="modal fade" id="cancellaProdotto" tabindex="-1" role="dialog" aria-labelledby="cancellaProdotto" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancellaProdotto">Cancella prodotto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="idProdotto1">Id prodotto</label>
+          <input type="text" class="form-control" [(ngModel)]="id" (change)="addId($event.target.value)" id="idProdotto1" placeholder="Id">
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="cancProd()">Cancella prodotto</button>
+      </div>
+    </div>
+  </div>
+</div>
